@@ -1,7 +1,14 @@
 const http = require('http');
 
 const server = http.createServer((req,res) => {
-  res.end("Hello From TaskFlow");
+  if (req.url === "/"){
+    res.end("Welcome to TaskFlow");
+  }
+  
+  else if (req.url === "/tasks"){
+    res.end("Here are your tasks");
+  }
+
 });
 
 server.listen(3000,() => {
