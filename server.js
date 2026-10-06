@@ -1,16 +1,15 @@
-const http = require('http');
+const express = require("express");
 
-const server = http.createServer((req,res) => {
-  if (req.url === "/"){
-    res.end("Welcome to TaskFlow");
-  }
-  
-  else if (req.url === "/tasks"){
-    res.end("Here are your tasks");
-  }
+const app = express();
 
+app.get("/", (req,res) => {
+  res.send("Welcome to TaskFlow");
 });
 
-server.listen(3000,() => {
-  console.log("Server is listening on port 3000");
+app.get("/tasks", (req,res) => {
+  res.send("Here are your tasks");
+});
+
+app.listen(3000, () =>{
+  console.log("Server is running on port 3000");
 })
