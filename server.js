@@ -65,7 +65,27 @@ app.post("/api/tasks", (req,res) => {
   }
 );
 
+//Update a task
+app.put("/api/tasks/:id", (req,res) => {
+  const id = Number(req.params.id);
+  const task = tasks,find(task => task.id === id);
+  if (!task){
+    return res.status(404).json({
+      message: "Task not found"
+    });
+  }
 
+  if (req.body.title !== undefined){
+    task.title = req.body.title;
+
+  }
+   if(req.body.completed !== undefined){
+    task.completed = req.body.completed;
+   }
+res.json(task);
+  });
+
+//  
 
 // Start the server
 app.listen(PORT, () =>{
